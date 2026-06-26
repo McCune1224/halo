@@ -1,0 +1,17 @@
+name: Halo
+version: '1.0.0'
+main: io.mckuna.halo.HaloPlugin
+api-version: '26.2'
+description: Configurable beacon radius overrides
+author: mckuna
+
+commands:
+  beaconreload:
+    description: Reload beacon radius config from disk
+    permission: halo.beaconreload
+    usage: /beaconreload
+
+permissions:
+  halo.beaconreload:
+    description: Allows using /beaconreload
+    default: op

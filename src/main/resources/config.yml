@@ -1,0 +1,8 @@
+# Beacon effect radius overrides (in blocks).
+# Default vanilla ranges: tier 1 = 10, tier 2 = 20, tier 3 = 30, tier 4 = 40.
+# Set a value to -1 to use the vanilla default for that tier.
+beacon-radius:
+  tier-1: 10
+  tier-2: 20
+  tier-3: 30
+  tier-4: 40
