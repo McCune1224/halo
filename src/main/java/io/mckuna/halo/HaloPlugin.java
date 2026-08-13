@@ -15,14 +15,16 @@ public class HaloPlugin extends JavaPlugin {
         config = new PluginConfig();
         config.load(this);
 
-        listener = new BeaconRadiusListener(config);
+        listener = new BeaconRadiusListener(this, config);
         getServer().getPluginManager().registerEvents(listener, this);
 
         BeaconRadiusCommand cmd = new BeaconRadiusCommand(this, config, listener);
         getCommand("beaconreload").setExecutor(cmd);
 
         // Apply to all already-loaded worlds (server startup)
-        getServer().getWorlds().forEach(listener::applyToWorld);
+        for (org.bukkit.World world : getServer().getWorlds()) {
+            listener.applyToWorld(world);
+        }
 
         getLogger().info("Halo enabled — beacon radius overrides active.");
     }

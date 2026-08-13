@@ -1,6 +1,8 @@
 package io.mckuna.halo;
 
 import io.mckuna.halo.config.PluginConfig;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,15 +31,15 @@ public class BeaconRadiusCommand implements CommandExecutor {
                 double scalar = Double.parseDouble(args[0]);
                 config.load(plugin);            // reset to config values
                 config.applyScalar(scalar);      // multiply
-                listener.applyToAllWorlds(plugin.getServer().getWorlds());
-                sender.sendMessage("§a[Halo] Beacon radii ×" + scalar);
+                int count = listener.applyToAllWorlds(plugin.getServer().getWorlds());
+                sender.sendMessage(Component.text("[Halo] Beacon radii ×" + scalar + "; updated " + count + " beacons.").color(NamedTextColor.GREEN));
             } catch (NumberFormatException e) {
-                sender.sendMessage("§cUsage: /beaconreload [scalar]");
+                sender.sendMessage(Component.text("Usage: /beaconreload [scalar]").color(NamedTextColor.RED));
             }
         } else {
             config.load(plugin);
-            listener.applyToAllWorlds(plugin.getServer().getWorlds());
-            sender.sendMessage("§a[Halo] Beacon radius config reloaded.");
+            int count = listener.applyToAllWorlds(plugin.getServer().getWorlds());
+            sender.sendMessage(Component.text("[Halo] Beacon radius config reloaded; updated " + count + " beacons.").color(NamedTextColor.GREEN));
         }
         return true;
     }
