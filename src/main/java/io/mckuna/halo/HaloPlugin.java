@@ -20,6 +20,7 @@ public class HaloPlugin extends JavaPlugin {
 
         BeaconRadiusCommand cmd = new BeaconRadiusCommand(this, config, listener);
         getCommand("beaconreload").setExecutor(cmd);
+        getCommand("beaconreload").setTabCompleter(cmd);
 
         // Apply to all already-loaded worlds (server startup)
         for (org.bukkit.World world : getServer().getWorlds()) {
